@@ -17,9 +17,9 @@ Guia completo para rodar WarChaos no Linux utilizando Heroic Games Launcher, Win
 
 > **⚠️ Importante:**
 >
-> A instalação do **WarChaos** no **Linux** foi testado via Lutris, Steam e Heroic, o que funcionou foi via Heroic mas quando preenchido todos os requisitos para o funcionamento correto do jogo com a melhor compatibilidade.
+> A instalação do **WarChaos** no **Linux** foi testado via Lutris, Steam e Heroic, o que funcionou foi via Heroic mas apenas quando preenchido todos os requisitos para o funcionamento correto do jogo com a melhor compatibilidade.
 >
-> Este guia foi feito com testes no **Arch Linux** então é importante que você faça a instalação e configuração seguindo o que a sua distro recomenda como nos guias abaixo
+> Este guia foi feito com testes no **Arch Linux** então é importante que você faça a instalação e configuração de drivers, vulkan e wine seguindo o que a sua distro recomenda para seu hardware, como nos guias abaixo que usei.
 >
 > <https://wiki.archlinux.org/title/gaming>
 >
