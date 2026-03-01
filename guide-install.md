@@ -49,6 +49,8 @@ Guia completo para rodar WarChaos no Linux utilizando Heroic Games Launcher, Win
   Nessa etapa você primeiro precisa baixar o .exe do .NET, nesse momento o que usamos é a v8.0.24 mas se quando estiver lendo esse guia se você baixar uma versão superior e quiser testa é só mudar o nome do pacote no comando abaixo.
 
   > Lembre-se de rodar este comando na pasta onde você baixou o .exe do .NET
+  >
+  > [Clique aqui para baixar .NET](https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.24/windowsdesktop-runtime-8.0.24-win-x64.exe)
 
   ```bash
     WINEPREFIX=~/Games/WarChaosPrefix WINEDLLOVERRIDES="mscoree=" wine windowsdesktop-runtime-8.0.24-win-x64.exe
