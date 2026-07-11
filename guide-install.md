@@ -1,6 +1,6 @@
-# 🐧 WarChaos no Linux (Heroic + Wine-GE + DXVK)
+# 🐧 Warface no Linux (Heroic + Wine-GE + DXVK)
 
-Guia completo para rodar WarChaos no Linux utilizando Heroic Games Launcher, Wine-GE e DXVK.
+Guia completo para rodar Warface no Linux utilizando Heroic Games Launcher, Wine-GE e DXVK.
 
 ---
 
@@ -8,7 +8,7 @@ Guia completo para rodar WarChaos no Linux utilizando Heroic Games Launcher, Win
 
 ### **✅ Requisitos**
 
-- [WarChaos](https://wf.warchaos.com.br/downloads) (atualizado)
+- [WarChaos](https://wf.warchaos.com.br) ou [Oberon](https://oberonproject.com.br/)
 - [Heroic Games Launcher](https://heroicgameslauncher.com/)
 - [Wine-GE-Proton8-25](https://github.com/GloriousEggroll/wine-ge-custom/releases/) (ou superior)
 - [Vulkan](https://www.vulkan.org/) (funcionando corretamente)
@@ -17,7 +17,7 @@ Guia completo para rodar WarChaos no Linux utilizando Heroic Games Launcher, Win
 
 > **⚠️ Importante:**
 >
-> A instalação do **WarChaos** no **Linux** foi testado via Lutris, Steam e Heroic, o que funcionou foi via Heroic mas apenas quando preenchido todos os requisitos para o funcionamento correto do jogo com a melhor compatibilidade.
+> A instalação do **Warface** no **Linux** foi testado via Lutris, Steam e Heroic, o que funcionou foi via Heroic mas apenas quando preenchido todos os requisitos para o funcionamento correto do jogo com a melhor compatibilidade.
 >
 > Este guia foi feito com testes no **Arch Linux** então é importante que você faça a instalação e configuração de drivers, vulkan e wine seguindo o que a sua distro recomenda para seu hardware, como nos guias abaixo que usei.
 >
@@ -35,14 +35,14 @@ Guia completo para rodar WarChaos no Linux utilizando Heroic Games Launcher, Win
   Este comando cria um prefixo Wine limpo e 64 bits
 
   ```bash
-    WINEPREFIX=~/Games/WarChaosPrefix WINEARCH=win64 wineboot
+    WINEPREFIX=~/Games/WarfacePrefix WINEARCH=win64 wineboot
   ```
 
 - 2️⃣ Instalar dependências
-  Isso instala fontes e Visual C++ 2022
+  Isso instala fontes e Visual C++ 2022, compiladores de shader e as bibliotecas do DirectX 11
 
   ```bash
-    WINEPREFIX=~/Games/WarChaosPrefix winetricks -q corefonts vcrun2022
+    WINEPREFIX=~/Games/WarfacePrefix winetricks -q corefonts vcrun2022 d3dcompiler_43 d3dcompiler_47 d3dx11_43 physx
   ```
 
 - 3️⃣ Instalar .NET 8 Desktop
@@ -53,7 +53,7 @@ Guia completo para rodar WarChaos no Linux utilizando Heroic Games Launcher, Win
   > [Clique aqui para baixar .NET](https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.24/windowsdesktop-runtime-8.0.24-win-x64.exe)
 
   ```bash
-    WINEPREFIX=~/Games/WarChaosPrefix WINEDLLOVERRIDES="mscoree=" wine windowsdesktop-runtime-8.0.24-win-x64.exe
+    WINEPREFIX=~/Games/WarfacePrefix WINEDLLOVERRIDES="mscoree=" wine windowsdesktop-runtime-8.0.24-win-x64.exe
   ```
 
   > **⚠️ Importante:**
@@ -65,17 +65,17 @@ Guia completo para rodar WarChaos no Linux utilizando Heroic Games Launcher, Win
 ### **Configuração no Heroic Launcher**
 
 - 1️⃣ Criar novo jogo manual
-  - Título: WarChaos
+  - Título: Warface
   - Imagem: <https://cdn2.steamgriddb.com/file/sgdb-cdn/grid/cb2363691a8351ee799c9108229c75b4.png>
   - Plataforma: Windows
-  - Prefixo: /home/seu-usuario/Games/WarChaosPrefix
+  - Prefixo: /home/seu-usuario/Games/WarfacePrefix
   - Wine Version: Wine-GE-Proton8-25
 
   ![Jogo Manual](./assets/jogo-manual.png)
 
 - 2️⃣ Rodar instalador primeiro
   - Clique em "Run Install First"
-  - Selecione o executável do launcher WarChaosLauncher.exe ele vai está dentro da pasta "WarChaos" que você extrai do .zip que baixa no site do jogo.
+  - Selecione o executável do launcher que no WarChaos é WarChaosLauncher.exe e no Oberon é Login.exe vai está dentro da pasta que você extrai do .zip que baixa no site do jogo.
 
   > **⚠️ Importante:**
   >
@@ -117,13 +117,21 @@ Guia completo para rodar WarChaos no Linux utilizando Heroic Games Launcher, Win
     ```bash
       DXVK_ENABLE_NVAPI=0
       DXVK_LOG_LEVEL=none
+      MESA_GL_VERSION_OVERRIDE=4.5
     ```
 
-    DXVK_ENABLE_NVAPI=0 - Evita conflitos NVAPI
-    DXVK_LOG_LEVEL=none - Remove spam de logs
+    DXVK_ENABLE_NVAPI=0 - Evita conflitos NVAPI.
+    DXVK_LOG_LEVEL=none - Remove spam de logs.
+    MESA_GL_VERSION_OVERRIDE=4.5 ajuda a evitar que o motor CryEngine tente buscar versões de shaders incompatíveis.
+    
+    > **⚠️ Importante:**
+    >
+    > Se você usa AMD pode ser que queira adicionar AMD_VULKAN_ICD=RADV
+    >
+    > Ele garante que você está usando o driver de código aberto (mais estável para jogos).
 
 - 4️⃣ Executável final
-  Por último você clica no jogo na biblioteca, vai no menu de 3 pontinhos e clica em "Edit Game" e em executável você seleciona o launcher WarChaosLauncher.exe.
+  Por último você clica no jogo na biblioteca, vai no menu de 3 pontinhos e clica em "Edit Game" e em executável você seleciona o launcher que no WarChaos é WarChaosLauncher.exe e no Oberon é Login.exe.
   ![Edit Game](./assets/edit-game.png)
   ![Select Execute](./assets/execute.png)
 
@@ -155,8 +163,8 @@ Jogo congela ao entrar na partida. Possíveis causas:
 
 ```json
 ~/Games/
- ├── WarChaos/
- ├── WarChaosPrefix/
+ ├── WarChaos/ ou OBERON/
+ ├── WarfacePrefix/
  └── windowsdesktop-runtime-8.0.xx-win-x64.exe
 ```
 
